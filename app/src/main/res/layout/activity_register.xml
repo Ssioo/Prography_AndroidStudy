@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".View.RegisterActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Register"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/register_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:hint="Email" />
+
+    <EditText
+        android:id="@+id/register_pw"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:hint="Password" />
+
+    <EditText
+        android:id="@+id/register_pwCheck"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:hint="Confirm Passord" />
+
+    <TextView
+        android:id="@+id/register_register_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="회원가입"
+        android:layout_margin="20dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+
+</LinearLayout>
