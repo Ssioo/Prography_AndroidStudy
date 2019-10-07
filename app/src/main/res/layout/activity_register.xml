@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".View.RegisterActivity">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -27,14 +26,16 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="20dp"
-        android:hint="Password" />
+        android:hint="Password"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/register_pwCheck"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="20dp"
-        android:hint="Confirm Passord" />
+        android:hint="Confirm Passord"
+        android:inputType="textPassword" />
 
     <TextView
         android:id="@+id/register_register_button"
