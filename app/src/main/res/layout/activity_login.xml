@@ -27,8 +27,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login_pw"
-        android:hint="Email"
+        android:hint="Password"
         android:layout_margin="20dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자동 로그인"
+            android:id="@+id/chk_autologin" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chk_saveUserId"
+            android:text="아이디 저장" />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/login_login_button"
