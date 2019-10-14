@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         /* 아이디 자동 완성 */
-        if (savedUserId != "") {
+        if (!savedUserId.equals("")) {
             chkSaveUserId.setChecked(true);
             etEmail.setText(savedUserId);
         }

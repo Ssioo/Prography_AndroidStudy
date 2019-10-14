@@ -1,24 +1,21 @@
 package com.prography.prography_androidstudy;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
+
 
 public class RegisterActivity extends AppCompatActivity {
+    public UserDatabase db;
     private TextView btnRegister;
     private EditText etEmail;
     private EditText etPw;
     private EditText etPwCheck;
-
-    public UserDatabase db;
     private UserModel userModel;
 
     @Override
@@ -33,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         etPwCheck = findViewById(R.id.register_pwCheck);
 
         /* UserDataBase */
-        db = Room.databaseBuilder(this, UserDatabase.class, "user").build();
+        db = UserDatabase.getDatabase(RegisterActivity.this);
         userModel = new UserModel(this);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {

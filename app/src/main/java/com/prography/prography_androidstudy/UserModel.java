@@ -47,7 +47,7 @@ public class UserModel {
         signUpThread.start();
 
         try {
-        signUpThread.join();
+            signUpThread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

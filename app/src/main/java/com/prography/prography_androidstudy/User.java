@@ -5,6 +5,9 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "users")
 public class User {
+    @PrimaryKey(autoGenerate = true)
+    public int id = 0;
+
     private String email;
     private String pw;
 
@@ -14,8 +17,7 @@ public class User {
         this.pw = pw;
     }
 
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+
 
     public String getEmail() {
         return email;

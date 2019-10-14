@@ -10,9 +10,7 @@ import androidx.room.RoomDatabase;
 @Database(entities = {User.class}, version = 1)
 abstract class UserDatabase extends RoomDatabase {
 
-    abstract public UserDao userDao();
-
-    private static volatile UserDatabase INSTANCE;
+    public static volatile UserDatabase INSTANCE;
 
     static UserDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -26,4 +24,6 @@ abstract class UserDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    abstract public UserDao userDao();
 }

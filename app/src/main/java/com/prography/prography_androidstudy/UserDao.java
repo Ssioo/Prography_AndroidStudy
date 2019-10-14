@@ -7,6 +7,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.prography.prography_androidstudy.User;
+
 import java.util.List;
 
 @Dao
