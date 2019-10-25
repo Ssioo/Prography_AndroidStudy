@@ -6,8 +6,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.prography.prography_androidstudy.Note;
-
 import java.util.List;
 
 @Dao
@@ -20,6 +18,10 @@ public interface NotesDao {
     /* Note 검색 with id in DB */
     @Query("SELECT * FROM notes WHERE id = :id")
     List<Note> findNoteswithID(int id);
+
+    /* Note 검색 with Title in DB */
+    @Query("SELECT * FROM notes WHERE title LIKE :title")
+    List<Note> findNoteswithTitle(String title);
 
     /* Note 전부 검색 */
     @Query("SELECT * FROM notes")

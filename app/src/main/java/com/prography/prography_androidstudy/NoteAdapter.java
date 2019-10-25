@@ -37,8 +37,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         if (note != null) {
             holder.tvNoteTitle.setText(note.getTitle());
             holder.tvNoteDescription.setText(note.getDescription());
-            holder.tvNoteDate.setText(note.getDate());
+            holder.tvNoteDateTime.setText("Deadline: " + note.getDate() + " " + note.getTime());
         }
+    }
+
+    public void setFilter(ArrayList<Note> notes) {
+        this.notes.clear();
+        notes.addAll(notes);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -49,7 +55,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNoteTitle;
         TextView tvNoteDescription;
-        TextView tvNoteDate;
+        TextView tvNoteDateTime;
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -57,7 +63,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             /* findViewByID */
             tvNoteTitle = itemView.findViewById(R.id.note_title);
             tvNoteDescription = itemView.findViewById(R.id.note_description);
-            tvNoteDate = itemView.findViewById(R.id.note_date);
+            tvNoteDateTime = itemView.findViewById(R.id.note_date);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

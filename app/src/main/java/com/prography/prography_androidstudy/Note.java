@@ -11,15 +11,25 @@ public class Note {
     private String title;
     private String description;
     private String date;
+    private String time;
 
     public Note() {
 
     }
 
-    public Note(String title, String description, String date) {
+    public Note(String title, String description, String date, String time) {
         this.title = title;
         this.description = description;
         this.date = date;
+        this.time = time;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getId() {

@@ -2,28 +2,21 @@ package com.prography.prography_androidstudy;
 
 import android.content.Context;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class NoteModel {
-    private NoteDatabase db;
     private NotesDao notesDao;
 
     public NoteModel(Context context) {
-        db = NoteDatabase.getDatabase(context);
-        notesDao = db.notesDao();
+        notesDao = NoteDatabase.getDatabase(context).notesDao();
     }
 
-    public boolean addNote(String title, String description) {
-        Date date = new Date(System.currentTimeMillis());
-        String today = new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(date);
-        final Note newNote = new Note(title, description, today);
+    public boolean addNote(String title, String description, String date, String time) {
+        final Note newNote = new Note(title, description, date, time);
         Thread addThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                db.notesDao().insert(newNote);
+                notesDao.insert(newNote);
             }
         });
         addThread.start();
@@ -31,17 +24,16 @@ public class NoteModel {
         return true;
     }
 
-    public boolean addNote(String title, String description, int id) {
-        Date date = new Date(System.currentTimeMillis());
-        String today = new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(date);
+    public boolean addNote(String title, String description, String date, String time, int id) {
         final Note note = getNote(id);
-        note.setDate(today);
+        note.setDate(date);
+        note.setTime(time);
         note.setTitle(title);
         note.setDescription(description);
         Thread editThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                db.notesDao().insert(note);
+                notesDao.insert(note);
             }
         });
         editThread.start();
@@ -54,7 +46,7 @@ public class NoteModel {
         Thread loadThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                noteArrayList.addAll(db.notesDao().findAllNotes());
+                noteArrayList.addAll(notesDao.findAllNotes());
             }
         });
         loadThread.start();
@@ -73,7 +65,7 @@ public class NoteModel {
         Thread loadThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                note.addAll(db.notesDao().findNoteswithID(id));
+                note.addAll(notesDao.findNoteswithID(id));
             }
         });
         loadThread.start();
@@ -84,5 +76,43 @@ public class NoteModel {
             e.printStackTrace();
         }
         return note.get(0);
+    }
+
+    public boolean deleteNote(int id) {
+        final Note note = getNote(id);
+        Thread deleteThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                notesDao.DeleteNotes(note);
+            }
+        });
+        deleteThread.start();
+
+        try {
+            deleteThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    public ArrayList<Note> getNote(final String word) {
+        final ArrayList<Note> noteArrayList = new ArrayList<>();
+        Thread loadThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                noteArrayList.addAll(notesDao.findNoteswithTitle(word));
+            }
+        });
+        loadThread.start();
+
+        try {
+            loadThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return noteArrayList;
     }
 }

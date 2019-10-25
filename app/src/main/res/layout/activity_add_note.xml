@@ -23,22 +23,42 @@
         android:background="@android:color/transparent"
         android:hint="제목"
         android:inputType="text"
-        android:textSize="20sp"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_add" />
+
+    <TextView
+        android:id="@+id/date_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="2019년 10월 26일"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/title_add"
+        app:layout_constraintTop_toBottomOf="@+id/title_add" />
+
+    <TextView
+        android:id="@+id/time_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="오전 1시 37분"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/date_add"
+        app:layout_constraintTop_toBottomOf="@+id/date_add" />
 
     <EditText
         android:id="@+id/description_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:hint="노트"
         android:inputType="text"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_add" />
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/date_add"
+        app:layout_constraintTop_toBottomOf="@+id/time_add" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

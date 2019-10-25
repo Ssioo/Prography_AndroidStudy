@@ -6,6 +6,7 @@
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="검색"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always"/>
     <item
         android:id="@+id/action_edit"
@@ -13,7 +14,7 @@
         android:title="편집" />
     <item
         android:id="@+id/action_sort"
-        android:title="정력 방식"
+        android:title="정렬 방식"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_show"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,13 +27,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NoteDatabase db;
     private NoteModel noteModel;
     private TextView tvLogout;
     private RecyclerView rvNoteList;
     private FloatingActionButton fbtnAddNote;
+    private DrawerLayout dlMain;
     private SharedPreferences sharedPreferences;
     private Toolbar toolbar;
+    private SearchView svMain;
     private ArrayList<Note> noteArrayList;
     private NoteAdapter noteAdapter;
 
@@ -44,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_main);
         rvNoteList = findViewById(R.id.note_list_main);
         fbtnAddNote = findViewById(R.id.fbtn_add_memo);
+        dlMain = findViewById(R.id.drawer_main);
 
         /* NoteDatabase */
-        db = NoteDatabase.getDatabase(MainActivity.this);
         noteModel = new NoteModel(this);
 
         /* Toolbar */
@@ -59,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
         /* RecyclerView - NoteList */
         rvNoteList.setLayoutManager(new LinearLayoutManager(this));
 
-
-
+        /* Set on Click Listener */
         fbtnAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +102,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_main, menu);
+        svMain = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        svMain.setMaxWidth(Integer.MAX_VALUE);
+        svMain.setQueryHint("일정 이름으로 검색하기");
+        svMain.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                noteArrayList = noteModel.getNote('%' + query + '%');
+                noteAdapter = new NoteAdapter(noteArrayList, MainActivity.this);
+                rvNoteList.setAdapter(noteAdapter);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                noteArrayList = noteModel.getNote('%' + newText + '%');
+                noteAdapter = new NoteAdapter(noteArrayList, MainActivity.this);
+                rvNoteList.setAdapter(noteAdapter);
+                return true;
+            }
+        });
         return true;
     }
 
@@ -105,10 +129,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                dlMain.openDrawer(GravityCompat.START);
                 break;
             case R.id.action_edit:
-                break;
-            case R.id.action_search:
                 break;
             case R.id.action_sort:
                 break;
@@ -118,5 +141,14 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (dlMain.isDrawerOpen(GravityCompat.START)) {
+            dlMain.closeDrawers();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
