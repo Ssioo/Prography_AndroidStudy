@@ -1,4 +1,4 @@
-package com.prography.prography_androidstudy;
+package com.prography.prography_androidstudy.Room;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 
 @Database(entities = {User.class}, version = 1)
-abstract class UserDatabase extends RoomDatabase {
+public abstract class UserDatabase extends RoomDatabase {
 
     public static volatile UserDatabase INSTANCE;
 

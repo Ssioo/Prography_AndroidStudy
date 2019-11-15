@@ -6,21 +6,24 @@
     android:layout_marginVertical="12dp"
     android:background="@drawable/round_list"
     android:orientation="horizontal"
-    android:paddingHorizontal="12dp"
-    android:paddingVertical="16dp">
+    android:paddingHorizontal="0dp"
+    android:paddingVertical="0dp">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_gravity="center"
+        android:paddingStart="8dp"
         app:srcCompat="@drawable/ic_small_circle" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingVertical="4dp">
 
         <TextView
             android:id="@+id/note_title"
@@ -49,4 +52,5 @@
             android:text="Date"
             android:textSize="18sp" />
     </LinearLayout>
+
 </LinearLayout>

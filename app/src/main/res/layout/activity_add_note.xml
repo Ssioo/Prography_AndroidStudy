@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNoteActivity">
+    tools:context=".src.add_edit.AddEditActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_add"
@@ -16,15 +16,17 @@
 
     <EditText
         android:id="@+id/title_add"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@android:color/transparent"
         android:hint="제목"
         android:inputType="text"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_add" />
 
@@ -50,15 +52,49 @@
 
     <EditText
         android:id="@+id/description_add"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:hint="노트"
         android:inputType="text"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/date_add"
+        app:layout_constraintEnd_toEndOf="@+id/title_add"
+        app:layout_constraintStart_toStartOf="@+id/title_add"
         app:layout_constraintTop_toBottomOf="@+id/time_add" />
+
+    <CheckBox
+        android:id="@+id/chk_alarm_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10분 전 알람"
+        app:layout_constraintStart_toStartOf="@+id/chk_alarm_1"
+        app:layout_constraintTop_toBottomOf="@+id/chk_alarm_1" />
+
+    <CheckBox
+        android:id="@+id/chk_alarm_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30분 전 알람"
+        app:layout_constraintStart_toStartOf="@+id/chk_alarm_2"
+        app:layout_constraintTop_toBottomOf="@+id/chk_alarm_2" />
+
+    <CheckBox
+        android:id="@+id/chk_alarm_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1시간 전 알람"
+        app:layout_constraintStart_toStartOf="@+id/chk_alarm_3"
+        app:layout_constraintTop_toBottomOf="@+id/chk_alarm_3" />
+
+    <CheckBox
+        android:id="@+id/chk_alarm_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="정각 알람"
+        app:layout_constraintStart_toStartOf="@+id/description_add"
+        app:layout_constraintTop_toBottomOf="@+id/description_add" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

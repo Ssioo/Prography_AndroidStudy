@@ -1,4 +1,4 @@
-package com.prography.prography_androidstudy;
+package com.prography.prography_androidstudy.Room;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -16,8 +16,6 @@ public class User {
         this.email = email;
         this.pw = pw;
     }
-
-
 
     public String getEmail() {
         return email;

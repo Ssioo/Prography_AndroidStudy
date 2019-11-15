@@ -1,4 +1,4 @@
-package com.prography.prography_androidstudy;
+package com.prography.prography_androidstudy.Room;
 
 import android.content.Context;
 
@@ -36,7 +36,11 @@ public class UserModel {
         }
     }
 
-    public boolean signUp(final String email, String pw) {
+    public String signUp(final String email, String pw, String pwCheck) {
+        if (!pw.equals(pwCheck)) {
+            return "PasswordError";
+        }
+
         final ArrayList<User> userArrayList = new ArrayList<>();
         Thread signUpThread = new Thread(new Runnable() {
             @Override
@@ -54,16 +58,17 @@ public class UserModel {
 
         /* User Data 중복 */
         if (userArrayList.size() != 0) {
-            return false;
+            return "RedundantUser";
         }
+
         final User newUser = new User(email, pw);
         Thread uploadUserThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                db.userDao().insert(newUser);
+                userDao.insert(newUser);
             }
         });
         uploadUserThread.start();
-        return true;
+        return "Success";
     }
 }

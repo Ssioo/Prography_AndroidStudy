@@ -6,26 +6,20 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_main">
 
-    <LinearLayout
-        android:layout_width="120dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#FFFFFF">
-        <TextView
-            android:id="@+id/btn_main_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="로그아웃"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:gravity="center"/>
-    </LinearLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/main_main">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/main_main"
+            app:layout_constraintTop_toTopOf="@id/main_main" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/note_list_main"
@@ -36,15 +30,6 @@
             app:layout_constraintStart_toStartOf="@id/main_main"
             app:layout_constraintTop_toTopOf="@id/main_main"
             tools:listitem="@layout/item_note" />
-
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_main"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/main_main"
-            app:layout_constraintTop_toTopOf="@id/main_main" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbtn_add_memo"
@@ -62,7 +47,21 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#FFFFFF">
+        <TextView
+            android:id="@+id/btn_main_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </LinearLayout>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
