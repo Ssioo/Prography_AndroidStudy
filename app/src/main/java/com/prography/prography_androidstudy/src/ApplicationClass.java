@@ -21,6 +21,7 @@ public class ApplicationClass extends Application {
 
     // 테스트 서버 주소
     public static String BASE_URL = "https://prographytodolist.azurewebsites.net/swagger/";
+    public static String BASE_FCM_URL = "https://fcm.googleapis.com/";
     // 실서버 주소
 //    public static String BASE_URL = "https://template.softsquared.com/";
 
@@ -32,11 +33,14 @@ public class ApplicationClass extends Application {
     // JWT Token 값
     public static String X_ACCESS_TOKEN = "X-ACCESS-TOKEN";
 
+    // FCM Token 값
+    public static String FCM_TOKEN = "FCM-TOKEN";
+
     // Retrofit 인스턴스
     public static Retrofit retrofit;
 
     // Date Format
-    public SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss", Locale.getDefault());
+    public SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
@@ -54,6 +58,20 @@ public class ApplicationClass extends Application {
         }
 
         return retrofit;
+    }
+
+    public static Retrofit retrofitFCM;
+
+    public static Retrofit getFCMRetrofit() {
+        if (retrofitFCM == null) {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .readTimeout(5000, TimeUnit.MILLISECONDS)
+                    .connectTimeout(5000, TimeUnit.MILLISECONDS)
+                    .build();
+
+            retrofitFCM = new Retrofit.Builder().baseUrl(BASE_FCM_URL).client(client).addConverterFactory(GsonConverterFactory.create()).build();
+        }
+        return retrofitFCM;
     }
 
     @Override

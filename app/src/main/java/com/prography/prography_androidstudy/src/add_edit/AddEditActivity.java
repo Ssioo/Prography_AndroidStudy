@@ -24,10 +24,18 @@ import com.prography.prography_androidstudy.R;
 import com.prography.prography_androidstudy.Room.TodoModel;
 import com.prography.prography_androidstudy.src.BaseActivity;
 import com.prography.prography_androidstudy.src.add_edit.interfaces.AddEditActivityView;
+import com.prography.prography_androidstudy.src.add_edit.models.TodoFCMRequest;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import static com.prography.prography_androidstudy.src.ApplicationClass.FCM_TOKEN;
+import static com.prography.prography_androidstudy.src.ApplicationClass.sSharedPreferences;
 
 public class AddEditActivity extends BaseActivity implements AddEditActivityView {
 
@@ -254,5 +262,14 @@ public class AddEditActivity extends BaseActivity implements AddEditActivityView
                 }
                 break;
         }
+    }
+
+    private static final String FCM_MESSAGE_URL = "https://fcm.googleapis.com/fcm/send";
+    private static final String SERVER_KEY = "AAAARBaaboQ:APA91bGSkmITQt2vFsAGCuOVQgX1hwkrMkrQOkG6U6bc6dx-bk2rWc41i-HUpOUEMctS-WgTSkgCKh5zH-EugUVk9e7-WnjCgfKGJS14BxZBZS7TQqjwiZ6EAMyS5FZyavxLT-VY3Nyx";
+
+    private void sendPostRoFCM(String message) {
+        TodoFCMRequest todo = new TodoFCMRequest(sSharedPreferences.getString(FCM_TOKEN, null), message, message);
+        final AddEditService addEditService = new AddEditService(this);
+        addEditService.addPushToFCM();
     }
 }

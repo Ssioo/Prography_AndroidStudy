@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity()
+@Entity(tableName = "todos")
 public class Todo {
     @PrimaryKey(autoGenerate = true)
     public int id = 0;

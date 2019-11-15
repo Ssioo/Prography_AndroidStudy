@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "292436995716",
+    "firebase_url": "https://prographyandroidstudy.firebaseio.com",
+    "project_id": "prographyandroidstudy",
+    "storage_bucket": "prographyandroidstudy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292436995716:android:8fa8caf64af8d49cf51cd1",
+        "android_client_info": {
+          "package_name": "com.prography.prography_androidstudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292436995716-2kaunt38qku08ag0ieq19n5ui9r0rta3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prography.prography_androidstudy",
+            "certificate_hash": "953dbd8ffa938f06b4ef6214a1f838dcb280e739"
+          }
+        },
+        {
+          "client_id": "292436995716-r937b33opoq4ovgso02sab13mvkilkk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd9zg3slffh17Wl7Tddo35NlRgOEmWf-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292436995716-r937b33opoq4ovgso02sab13mvkilkk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22,7 +22,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     private static final boolean DEFAULT_AUTO_LOGIN = false;
     private static final String DEFAULT_SAVED_USERID = "";
 
-    private TextView btnLogin;
+    private TextView btnSignin;
     private TextView btnRegister;
     private EditText etEmail;
     private EditText etPw;
@@ -40,7 +40,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
         setContentView(R.layout.activity_login);
 
         /* findViewById */
-        btnLogin = findViewById(R.id.login_login_button);
+        btnSignin = findViewById(R.id.login_login_button);
         btnRegister = findViewById(R.id.login_register_button);
         etEmail = findViewById(R.id.login_email);
         etPw = findViewById(R.id.login_pw);
@@ -57,7 +57,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
         chkAutoLogin.setOnCheckedChangeListener(this); // Auto Login
 
         /* Set On Click Listener */
-        btnLogin.setOnClickListener(this); // Login
+        btnSignin.setOnClickListener(this); // Login
         btnRegister.setOnClickListener(this); // Register
     }
 
@@ -65,7 +65,6 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     protected void onStart() {
         super.onStart();
         // 자동 로그인 확인 기능
-
         boolean isAutoLogin = sharedPreferences.getBoolean("autoLogin", DEFAULT_AUTO_LOGIN);
         String savedUserId = sharedPreferences.getString("userId", DEFAULT_SAVED_USERID);
         if (isAutoLogin) {
@@ -85,7 +84,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
     protected void onResume() {
         super.onResume();
         /* 버튼 재활성화 */
-        btnLogin.setEnabled(true);
+        btnSignin.setEnabled(true);
         btnRegister.setEnabled(true);
     }
 
@@ -110,8 +109,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
         switch (v.getId()) {
             case R.id.login_login_button:
                 /* 버튼 오작동 방지 일시 disable */
-                btnLogin.setEnabled(false);
-
+                btnSignin.setEnabled(false);
                 String email_string = etEmail.getText().toString();
                 String pw_string = etPw.getText().toString();
                 /* email, pw DB 작업*/
@@ -122,7 +120,7 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
                 } else {
                     makeNewToast("아이디 또는 비밀번호를 확인해 주세요.");
                     /* 실패시 버튼 재활성화 */
-                    btnLogin.setEnabled(true);
+                    btnSignin.setEnabled(true);
                 }
                 break;
 
@@ -144,13 +142,23 @@ public class SignInActivity extends BaseActivity implements SignInActivityView {
         }
     }
 
+    private void trySignIn(String email, String password) {
+        final SignInService signInService = new SignInService(this);
+        signInService.getSignIn();
+    }
+
     @Override
     public void validateSuccess(int uniqueId) {
-
+        hideProgressDialog();
+        makeNewToast("로그인에 성공하였습니다.");
+        startNextActivity(MainActivity.class);
+        finish();
     }
 
     @Override
     public void validateFalire(String message) {
-
+        hideProgressDialog();
+        makeNewToast("로그인에 실패하였습니다.");
+        btnSignin.setEnabled(true);
     }
 }

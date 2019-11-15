@@ -16,15 +16,15 @@ public interface TodosDao {
     void insert(Todo... todos);
 
     /* Todo 검색 with id in DB */
-    @Query("SELECT * FROM Todo WHERE id = :id")
+    @Query("SELECT * FROM todos WHERE id = :id")
     Todo findNotewithID(int id);
 
     /* Todo 검색 with Title in DB */
-    @Query("SELECT * FROM Todo WHERE title LIKE :title")
+    @Query("SELECT * FROM todos WHERE title LIKE :title")
     List<Todo> findNoteswithTitle(String title);
 
     /* Todo 전부 검색 */
-    @Query("SELECT * FROM Todo")
+    @Query("SELECT * FROM todos")
     List<Todo> findAllNotes();
 
     /* Delete Todo */

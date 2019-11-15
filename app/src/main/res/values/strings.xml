@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Prography_AndroidStudy</string>
+    <string name="default_notification_channel_id">prography</string>
 </resources>
